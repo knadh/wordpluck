@@ -5,12 +5,6 @@
 	November 2012
 */
 
-
-var Game = new function() {
-	this.init = function() {
-		initialize();
-	};
-
 	// globals
 	var prompts = {
 		2: "Easy peasy!",
@@ -44,7 +38,7 @@ var Game = new function() {
 			"level": 1,
 			"score": 0,
 			"accuracy": 0,
-			"speed": 0			
+			"speed": 0
 		}
 
 		words = ["hello"],
@@ -63,35 +57,42 @@ var Game = new function() {
 		ui = {},
 		notice_timer = null;
 
+class Game {
+	constructor() {
+		this.init = function() {
+			return this.initialize();
+		}
+	}
+
 	// initialization
-	function initialize() {
-		initUI();
+	initialize() {
+		this.initUI();
 
 		// load words
-		loadWords(round.level);
-		nextWord();
+		this.loadWords(round.level);
+		this.nextWord();
 
 		// update ui elements
-		updateUI();
+		this.updateUI();
 	};
 
 	// play/pause the game
-	function toggleGame() {
+	toggleGame() {
 		if(!started) return false;
 
 		if(createjs.Ticker.getPaused()) {
-			clearNotice();
+			this.clearNotice();
 			canvas.style.opacity = 1;
 			createjs.Ticker.setPaused(false);
 		} else {
 			createjs.Ticker.setPaused(true);
 			canvas.style.opacity = 0;
-			permaNotice("Hit Space to unpause");
+			this.permaNotice("Hit Space to unpause");
 		}
 	}
 
 	// init ui elements
-	function initUI() {
+	initUI() {
 		canvas = document.querySelector("#stage");
 
 		// canvas bounds
@@ -115,19 +116,21 @@ var Game = new function() {
 		};
 
 		// start
-		document.querySelector("#btn-start").onclick = function() {
+		document.querySelector("#btn-start").addEventListener('click', ()=>{
 			ui.start_box.remove();
 
-			notice("Prepare to start typing ...");
-			window.setTimeout(function() {
+			this.notice("Prepare to start typing ...");
+			window.setTimeout(() => {
 				started = true;
 				createjs.Ticker.setFPS(FPS);
-				createjs.Ticker.addListener(tick, true);
+				// createjs.Ticker.addListener(this.tick, true);
+				createjs.Ticker.addListener(this.tick.bind(this), true)
 
 				// keyboard event listener
-				document.onkeydown = onKeyPress;
+				// function onkeypress invoked at this scope...
+				document.onkeydown = this.onKeyPress.bind(this)
 			}, 3000);
-		};
+		});
 
 		// sound checkbox
 		ui.sound.onclick = function() {
@@ -160,10 +163,9 @@ var Game = new function() {
 			ui.tips.checked = true; tips = true;
 		}
 
-
-		canvas.onclick = function() {
-			toggleGame();
-		};
+		canvas.addEventListener('click', () => {
+			this.toggleGame();
+		})
 
 		// Multiple sound objects that can be played simultaneously.
 		for(var n=0; n<15; n++) {
@@ -173,12 +175,12 @@ var Game = new function() {
 		}
 		sounds.p = 1;
 
-		positionUI();
-		window.onresize = positionUI;
+		this.positionUI();
+		window.onresize = this.positionUI;
 	}
 
 	// position ui elements
-	function positionUI() {
+	positionUI() {
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
 
@@ -191,37 +193,37 @@ var Game = new function() {
 	}
 
 	// show a permanent notice
-	function permaNotice(msg) {
+	permaNotice(msg) {
 		window.clearTimeout(notice_timer);
 		ui.notice.innerText = msg;
 		ui.notice.style.display = "block";
 	}
 	// hide notice
-	function clearNotice(msg) {
+	clearNotice(msg) {
 		ui.notice.style.display = "none";
 	}
 
 	// show a delayed
-	function delayedNotice(msg, delay) {
-		window.setTimeout(function() {
-			notice(msg);
+	delayedNotice(msg, delay) {
+		window.setTimeout(() => {
+			this.notice(msg);
 		}, delay*1000);
 	}
 
 	// show a notice
-	function notice(msg) {
+	notice(msg) {
 		window.clearTimeout(notice_timer);
 
 		ui.notice.innerText = msg;
 		ui.notice.style.display = "block";
-		
+
 		notice_timer = window.setTimeout(function() {
 			ui.notice.style.display = "none";
 		}, 3000)
 	}
 
 	// play a sound
-	function playSound(s) {
+	playSound(s) {
 		if(!sound) return;
 
 		sounds[sounds.p-1].pause();
@@ -236,7 +238,7 @@ var Game = new function() {
 	}
 
 	// update ui elements
-	function updateUI() {
+	updateUI() {
 		ui.level.innerText = round.level;
 		ui.score.innerText = round.score;
 		ui.words.innerText = round.pop_count;
@@ -248,15 +250,15 @@ var Game = new function() {
 	}
 
 	// level goes up
-	function levelUp() {
+	levelUp() {
 		round.level++;
-		notice("Level " + round.level);
-		updateUI();
-		loadWords(round.level);
+		this.notice("Level " + round.level);
+		this.updateUI();
+		this.loadWords(round.level);
 	}
 
 	// create a word and render it
-	function renderWord(word) {
+	renderWord(word) {
 		word = word.toUpperCase();
 
 		var g = new createjs.Graphics();
@@ -281,11 +283,11 @@ var Game = new function() {
 			bubble.char = word[n];
 			bubble.temp_x = x;
 			bubble.y = 10;
-			bubble.speed = random((round.level / 5) + 1, (round.level / 5) + 3); // initial speed
+			bubble.speed = this.random((round.level / 5) + 1, (round.level / 5) + 3); // initial speed
 
 			set.push(bubble);
 			stage.addChild(bubble);
-			x+= RADIUS + random( RADIUS+10, RADIUS*2 + 20);
+			x+= RADIUS + this.random( RADIUS+10, RADIUS*2 + 20);
 		}
 
 		for(var n=0; n<set.length; n++) {
@@ -296,27 +298,27 @@ var Game = new function() {
 		set.pointer = 0; // character pointer
 		set.deleted = 0; // deleted chars
 		set.bad = 0; // bad keypresses
-		
+
 		bubbles[word] = set;
 		cur = word;
 		round.word_count++;
 
 		// level goes up
 		if(round.word_count % WORDS_PER_LEVEL == 0) {
-			levelUp();
+			this.levelUp();
 		}
 
-		markStart();
+		this.markStart();
 	};
 
 	// render the upcoming word
-	function renderTip(word) {
+	renderTip(word) {
 		if(!tips || round.word_count == 1) return;
 		ui.tip.innerText = word;
 	}
 
 	// createjs ticker
-	function tick() {
+	tick() {
 		for(var word in bubbles) {
 			if(!bubbles.hasOwnProperty(word)) continue;
 
@@ -338,7 +340,7 @@ var Game = new function() {
 			if(bubbles[word].deleted == bubbles[word].length) {
 				var popped = bubbles[cur].pointer >= bubbles[cur].length;
 				delete bubbles[word];
-				deleted(popped);
+				this.deleted(popped);
 			}
 		}
 
@@ -346,7 +348,7 @@ var Game = new function() {
 	};
 
 	// load words from the dictionary
-	function loadWords(level) {
+	loadWords(level) {
 		if(level == 1) {
 			words = THESAURUS.three;
 		} else if(level == 3) {
@@ -364,77 +366,77 @@ var Game = new function() {
 		}
 
 		if(prompts.hasOwnProperty(level)) {
-			delayedNotice(prompts[level], 5);
+			this.delayedNotice(prompts[level], 5);
 		}
 
-		words = shuffle(words);
+		words = this.shuffle(words);
 		words.index = 0;
 	}
 
 	// up the next word in the queue
-	function nextWord() {
-		renderWord(words[words.index]);
+	nextWord() {
+		this.renderWord(words[words.index]);
 		words.index = words.index+1 >= words.length ? 0 : words.index+1;
-		renderTip(words[words.index]);
+		this.renderTip(words[words.index]);
 	}
 
 	// starttime of a word's creation
-	function markStart() {
-		start_time = microtime();
+	markStart() {
+		start_time = this.microtime();
 	}
 
 	// note elapsed time
-	function elapsed() {
-		round.elapsed += (microtime() - start_time);
+	elapsed() {
+		round.elapsed += (this.microtime() - start_time);
 	}
 
 	// successful pop of a word
-	function score(word) {
+	score(word) {
 		// successful pop of a word
 		var score = word.length * (tips ? SCORE_LETTER/2 : SCORE_LETTER);
 		round.letter_count+= word.length;
 		round.pop_count++;
 
-		elapsed();
+		this.elapsed();
 
 		round.score += score;
 	};
 
 	// a single character's been popped
-	function popOne(c) {
-		playSound("pop");
+	popOne(c) {
+		this.playSound("pop");
 	}
 
 	// a word's been successfully popped by the user
-	function popped(word) {
-		score(word);
+	popped(word) {
+		this.score(word);
 		round.accuracy += 1;
-		updateUI();
+		this.updateUI();
 	};
 
 	// incorrect keypress
-	function badKey() {
+	badKey() {
 		bubbles[cur].bad++;
 		round.accuracy -= (bubbles[cur].bad / bubbles[cur].length);
 	};
 
 	// a word's just been deleted off the screen
-	function deleted(popped) {
+	deleted(popped) {
 		if(!popped) { // missed a word
 			round.accuracy -= 1;
-			elapsed();
+			this.elapsed();
 		}
 
-		updateUI();
-		nextWord();
+		this.updateUI();
+		this.nextWord();
 	};
 
 	// keyboard listener
-	function onKeyPress(e) {
+	onKeyPress(e) {
 		// space key
 		if(e.keyCode == 32) {
 			e.preventDefault();
-			toggleGame();
+			this.toggleGame();
 			return;
 		}
 
@@ -457,27 +459,27 @@ var Game = new function() {
 		if( bubbles[cur][p].char == c) {	// correct keypress
 			bubbles[cur][p].speed = 30;
 			bubbles[cur].pointer++;
-			popOne(c);
+			this.popOne(c);
 		} else { // incorrect keypress
-			badKey();
+			this.badKey();
 		}
 
 		if(bubbles[cur].pointer >= bubbles[cur].length) {
-			popped(cur);
+			this.popped(cur);
 		}
 	}
 
 	// get a random number betwen min and max
-	function random(min, max) {
+	random(min, max) {
 		return Math.floor( Math.random(new Date().getTime()) * (max - min) + min, 0 );
 	}
 
-	function shuffle(o) {
+	shuffle(o) {
 		for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
 		return o;
 	}
 
-	function microtime(get_as_float) {
+	microtime(get_as_float) {
 		var unixtime_ms = new Date().getTime();
 		var sec = parseInt(unixtime_ms / 1000);
 		return (unixtime_ms/1000);
@@ -485,5 +487,6 @@ var Game = new function() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-	Game.init();
+	let game = new Game()
+	game.init();
 }, false);
