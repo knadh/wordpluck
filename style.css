@@ -1,22 +1,22 @@
 body {
-	background:crimson;
+	background:white;
 	margin: 0;
 	padding: 0;
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
 
-	font-family: "Segoe UI", "Helvetica Neue", Helvetica, "Times New Roman";
+	font-family: "Lucida Sans Demibold", "Helvetica Neue", Helvetica, "Times New Roman";
 	font-size: 16px;
-	color: purple;
+	color: lightsalmon;
 }
 
 h1, h2, h3 {
 	font-weight: normal;
 }
 button {
-	background: #111;
-	color: #fff;
+	background: brown;
+	color: goldenrod;
 	border: 0;
 	padding: 10px 30px;
 	border-radius: 3px;
@@ -27,7 +27,7 @@ button {
 }
 	.button:hover,
 	button:hover {
-		background: #0000bb;
+		background: lightgreen;
 		color: #fff;
 	}
 
@@ -63,7 +63,7 @@ a {
 	top: 100px;
 	margin: 0;
 
-	color: white;
+	color: purple;
 	text-align: center;
 	text-transform: lowercase;
 	letter-spacing: 3px;
@@ -105,7 +105,7 @@ a {
 	z-index: 1;
 	font-size: 5em;
 	text-align: center;
-	color: #ccc;
+	color: crimson;
 	display: none;
 }
 
@@ -116,7 +116,7 @@ a {
 	padding: 0;
 }
 	#stats li {
-		border: 1px solid #444;
+		border: 1px solid black;
 		margin-bottom: 15px;
 		border-radius: 3px;
 	}
@@ -125,7 +125,7 @@ a {
 		padding: 5px;
 	}
 	#stats label {
-		background: #444;
+		background: darkgreen;
 		color: #fff;
 		font-size: 11px;
 		padding: 5px;
