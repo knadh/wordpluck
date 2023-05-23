@@ -26,7 +26,7 @@ class Game {
 		this.RADIUS = 30
 		this.BORDER = 4
 		this.FONT_SIZE = 36
-		this.FPS = 60
+		this.FPS = 120
 		this.SCORE_LETTER = 10
 		this.WORDS_PER_LEVEL = 3
 		this.round = {
