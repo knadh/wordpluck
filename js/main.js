@@ -27,7 +27,7 @@ class Game {
 		this.BORDER = 4
 		this.FONT_SIZE = 36
 		this.FPS = 120
-		this.SCORE_LETTER = 10
+		this.SCORE_LETTER = 100
 		this.WORDS_PER_LEVEL = 3
 		this.round = {
 			"elapsed": 0,
