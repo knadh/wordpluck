@@ -1,5 +1,5 @@
 body {
-	background: #fff;
+	background: hwb(125 9% 15% / 0.362);
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -8,15 +8,15 @@ body {
 
 	font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial;
 	font-size: 16px;
-	color: #444;
+	color: #2036c4;
 }
 
 h1, h2, h3 {
 	font-weight: normal;
 }
 button {
-	background: #111111;
-	color: #ffffff;
+	background: #0cd0da;
+	color: #600cae;
 	border: 0;
 	padding: 10px 30px;
 	border-radius: 3px;
@@ -28,11 +28,11 @@ button {
 	.button:hover,
 	button:hover {
 		background: #bb007d;
-		color: #fff;
+		color: #470fcbd1;
 	}
 
 a {
-	color: #333;
+	color: #48bf10;
 	text-decoration: none;
 }
 	a:hover {
@@ -63,7 +63,7 @@ a {
 	top: 100px;
 	margin: 0;
 
-	color: #999;
+	color: #15cfd9;
 	text-align: center;
 	text-transform: uppercase;
 	letter-spacing: 2px;
@@ -105,7 +105,7 @@ a {
 	z-index: 1;
 	font-size: 5em;
 	text-align: center;
-	color: #ccc;
+	color: #8fcf0f;
 	display: none;
 }
 
@@ -116,7 +116,7 @@ a {
 	padding: 0;
 }
 	#stats li {
-		border: 1px solid #444;
+		border: 1px solid #6e085a51;
 		margin-bottom: 15px;
 		border-radius: 3px;
 	}
@@ -125,7 +125,7 @@ a {
 		padding: 5px;
 	}
 	#stats label {
-		background: #444;
+		background: #444444;
 		color: #fff;
 		font-size: 11px;
 		padding: 5px;
