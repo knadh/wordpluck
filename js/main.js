@@ -1,8 +1,7 @@
 /*
-	Kailash Nadh
-	http://nadh.in
+	Saketh Surya
 
-	November 2012
+	23 MAY 2023
 */
 
 class Game {
@@ -26,8 +25,8 @@ class Game {
 		this.RADIUS = 30
 		this.BORDER = 4
 		this.FONT_SIZE = 36
-		this.FPS = 60
-		this.SCORE_LETTER = 10
+		this.FPS = 180
+		this.SCORE_LETTER = 1
 		this.WORDS_PER_LEVEL = 3
 		this.round = {
 			"elapsed": 0,
@@ -40,7 +39,7 @@ class Game {
 			"speed": 0
 		}
 
-		this.words = ["hello"]
+		this.words = ["HAVE A NICE GAMING EXPERIENCE...Ta Daa..."]
 		this.bubbles = {}
 		this.canvas = null
 		this.stage = null
