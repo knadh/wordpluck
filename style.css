@@ -15,8 +15,8 @@ h1, h2, h3 {
 	font-weight: normal;
 }
 button {
-	background: #111;
-	color: #fff;
+	background: #111111;
+	color: #ffffff;
 	border: 0;
 	padding: 10px 30px;
 	border-radius: 3px;
@@ -27,7 +27,7 @@ button {
 }
 	.button:hover,
 	button:hover {
-		background: #0000bb;
+		background: #bb007d;
 		color: #fff;
 	}
 
