@@ -1,5 +1,5 @@
 body {
-	background: #fff;
+	background: #0f0101;
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -8,7 +8,7 @@ body {
 
 	font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial;
 	font-size: 16px;
-	color: #444;
+	color: #c7fc08;
 }
 
 h1, h2, h3 {
@@ -32,11 +32,11 @@ button {
 	}
 
 a {
-	color: #333;
+	color: #a2ef12;
 	text-decoration: none;
 }
 	a:hover {
-		color: #444;
+		color: #def512;
 	}
 .clear {
 	clear: both;
@@ -63,7 +63,7 @@ a {
 	top: 100px;
 	margin: 0;
 
-	color: #999;
+	color: #a2f80c;
 	text-align: center;
 	text-transform: uppercase;
 	letter-spacing: 2px;
@@ -105,7 +105,7 @@ a {
 	z-index: 1;
 	font-size: 5em;
 	text-align: center;
-	color: #ccc;
+	color: #c9f90b;
 	display: none;
 }
 
@@ -116,7 +116,7 @@ a {
 	padding: 0;
 }
 	#stats li {
-		border: 1px solid #444;
+		border: 1px solid #aff715;
 		margin-bottom: 15px;
 		border-radius: 3px;
 	}
@@ -125,7 +125,7 @@ a {
 		padding: 5px;
 	}
 	#stats label {
-		background: #444;
+		background: #b8e60f;
 		color: #fff;
 		font-size: 11px;
 		padding: 5px;
