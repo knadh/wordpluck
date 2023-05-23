@@ -183,7 +183,8 @@ class Game {
 
 		this.RADIUS = Math.ceil(this.canvas.width * 0.019);
 		this.FONT_SIZE = Math.ceil(this.canvas.width * 0.022);
-		this.BORDER = this.RADIUS * .13;
+		this.BORDER = this.RADIUS * .33;
+		this.canvas.style.color = "yellow";
 	}
 
 	// show a permanent notice
@@ -259,7 +260,7 @@ class Game {
 
 		// draw the circle
 		g.setStrokeStyle(this.BORDER);
-		g.beginStroke("#333333");
+		g.beginStroke("#7fff00");
 		g.drawCircle(0,0, this.RADIUS);
 
 
@@ -267,7 +268,7 @@ class Game {
 		for(var n=0; n<word.length; n++) {
 			var bubble = new createjs.Container(),
 				circle = new createjs.Shape(g),
-				letter = new createjs.Text(word[n] == " " ? "_" : word[n], this.FONT_SIZE + "px Arial", "#333333");
+				letter = new createjs.Text(word[n] == " " ? "_" : word[n], this.FONT_SIZE + "px Arial", "pink");
 
 			letter.textBaseline = "middle";
 			letter.textAlign = "center";

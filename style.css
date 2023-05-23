@@ -1,5 +1,5 @@
 body {
-	background:white;
+	background: navy;
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -8,15 +8,15 @@ body {
 
 	font-family: "Lucida Sans Demibold", "Helvetica Neue", Helvetica, "Times New Roman";
 	font-size: 16px;
-	color: lightsalmon;
+	color: #7fff00;
 }
 
 h1, h2, h3 {
 	font-weight: normal;
 }
 button {
-	background: brown;
-	color: goldenrod;
+	background: black;
+	color: gold;
 	border: 0;
 	padding: 10px 30px;
 	border-radius: 3px;
@@ -125,8 +125,8 @@ a {
 		padding: 5px;
 	}
 	#stats label {
-		background: darkgreen;
-		color: #fff;
+		background: yellow;
+		color: black;
 		font-size: 11px;
 		padding: 5px;
 		display: block;
